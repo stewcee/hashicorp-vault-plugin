@@ -47,7 +47,7 @@ public class VaultAppRoleCredential extends AbstractVaultTokenCredential {
     @Override
     public String getToken(Vault vault) {
         try {
-            return vault.auth().loginByAppRole(path, roleId, Secret.toString(secretId)).getAuthClientToken();
+            return vault.auth().loginByAppRole("approle", roleId, Secret.toString(secretId)).getAuthClientToken();
         } catch (VaultException e) {
             throw new VaultPluginException("could not log in into vault", e);
         }
